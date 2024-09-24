@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+//* connecting the node.js to mongodb
 const connectToLocalDb = async () => {
     try {
         await mongoose.connect("mongodb://127.0.0.1:27017/cardsServer");

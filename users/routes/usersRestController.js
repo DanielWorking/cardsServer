@@ -15,7 +15,7 @@ const {
 } = require("../validation/userValidationService.js");
 const router = express.Router();
 
-//TODO: register user using user information
+//* register user
 router.post("/", async (request, response) => {
     try {
         const error = validateRegistration(request.body);
@@ -28,28 +28,26 @@ router.post("/", async (request, response) => {
     }
 });
 
-//TODO: get user using userId
-router.get("/:uesrId", auth, async (request, response) => {
+//* get user
+router.get("/:userId", auth, async (request, response) => {
     try {
-        const { uesrId } = request.params;
+        const { userId } = request.params;
         const userInfo = request.user;
-        if (userInfo._id == uesrId && !user.isAdmin) {
+        if (userInfo._id == userId && !user.isAdmin) {
             return handleError(
                 response,
                 403,
                 "User is not authorized to access this information."
             );
         }
-        let user = await getUser(uesrId);
+        let user = await getUser(userId);
         response.send(user);
     } catch (error) {
         handleError(response, 404, "User not found.");
     }
 });
 
-//TODO: get all users
-//! for testing we keep this middleware withoutany kind of authorization conditions
-//* can add at the end of the project for security messures
+//* get all uesrs
 router.get("/", auth, async (request, response) => {
     try {
         let users = await getUsers();
@@ -59,32 +57,41 @@ router.get("/", auth, async (request, response) => {
     }
 });
 
-//TODO: delete user
-//TODO: add authorization = isAdmin or user.isBusiness && user._id == userId for this card
+//* delete user
 router.delete("/:userId", auth, async (request, response) => {
-    try {
-        let deletedUser = await deleteUser(request.params.userId);
-        response.send(deletedUser);
-    } catch (error) {
-        handleError(response, 500, "Failed to delete the user.");
+    const { userId } = request.params;
+    const userInfo = request.user;
+    if ((userInfo.isAdmin || userInfo.isBusiness) && userInfo._id == userId) {
+        try {
+            let deletedUser = await deleteUser(request.params.userId);
+            response.send(deletedUser);
+        } catch (error) {
+            handleError(response, 500, "Failed to delete the user.");
+        }
     }
 });
 
-//TODO: update user
-//TODO: add authorization = isAdmin or user._id == userId for this card
+//* update user
 router.put("/:userId", auth, async (request, response) => {
-    try {
-        const error = validateLogin(request.body);
-        if (error) return handleError(response, 400, `Joi Error: ${error}`);
+    const { userId } = request.params;
+    const userInfo = request.user;
+    if (userInfo.isAdmin || userInfo._id == userId) {
+        try {
+            const error = validateLogin(request.body);
+            if (error) return handleError(response, 400, `Joi Error: ${error}`);
 
-        let updatedUser = await updateUser(request.params.userId, request.body);
-        response.send(updatedUser);
-    } catch (error) {
-        handleError(response, 400, "Invalid user data.");
+            let updatedUser = await updateUser(
+                request.params.userId,
+                request.body
+            );
+            response.send(updatedUser);
+        } catch (error) {
+            handleError(response, 400, "Invalid user data.");
+        }
     }
 });
 
-//TODO: login user
+//* login user
 router.post("/login", async (request, response) => {
     try {
         const error = validateLogin(request.body);

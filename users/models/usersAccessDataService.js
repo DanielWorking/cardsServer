@@ -4,7 +4,7 @@ const User = require("./mongodb/User.js");
 const { createError } = require("../../utils/handleErrors.js");
 const { comparePasswords, generateUserPassword } = require("../helpers/bcrypt");
 
-//TODO: registerUser(newUser):
+//* register user using the user data
 const registerUser = async (newUser) => {
     try {
         newUser.password = generateUserPassword(newUser.password);
@@ -17,7 +17,7 @@ const registerUser = async (newUser) => {
     }
 };
 
-//TODO: getUser(userId):
+//* get user using user id
 const getUser = async (userId) => {
     try {
         let user = await User.findById(userId);
@@ -27,7 +27,7 @@ const getUser = async (userId) => {
     }
 };
 
-//TODO: getUsers():
+//* get all users
 const getUsers = async () => {
     try {
         let users = await User.find();
@@ -37,7 +37,7 @@ const getUsers = async () => {
     }
 };
 
-//TODO: deleteUser(userId):
+//* delete user using user id
 const deleteUser = async (userId) => {
     try {
         let user = await User.findByIdAndDelete(userId);
@@ -47,7 +47,7 @@ const deleteUser = async (userId) => {
     }
 };
 
-//TODO: updateUser(userId, newUserData)
+//* update user using user id and the new data
 const updateUser = async (userId, newUserData) => {
     try {
         let user = await User.findByIdAndUpdate(userId, newUserData, {
@@ -60,7 +60,7 @@ const updateUser = async (userId, newUserData) => {
     }
 };
 
-//TODO: loginUser(email, passward):
+//* login the user using email and password
 const loginUser = async (email, password) => {
     try {
         const userFromDb = await User.findOne({ email });

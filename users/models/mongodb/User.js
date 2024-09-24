@@ -4,6 +4,7 @@ const Address = require("../../../helpers/mongodb/address");
 const Image = require("../../../helpers/mongodb/image");
 const Name = require("../../../helpers/mongodb/Name");
 
+//* user schema
 const userSchema = new mongoose.Schema({
     name: Name,
     phone: PHONE,

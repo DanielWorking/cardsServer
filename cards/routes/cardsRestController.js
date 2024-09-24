@@ -32,7 +32,7 @@ router.get("/", async (request, response) => {
 
 //* the order of the functions is important, the server reads from top to buttom and check what url and CRUD command the request is. to make sure the server wont think /my-cards is the id, we need to position the my-cards function before the /:cardId functions
 
-//TODO: get my cards using userId:
+//* get my cards
 router.get("/my-cards", auth, async (request, response) => {
     if (DB == "mongodb") {
         try {
@@ -52,8 +52,7 @@ router.get("/my-cards", auth, async (request, response) => {
     }
 });
 
-//TODO: get card using cardId:
-//? :cardId - a route parameter will capture the value of cardId from the URL
+//* get card
 router.get("/:cardId", async (request, response) => {
     if (DB == "mongodb") {
         try {
@@ -65,7 +64,7 @@ router.get("/:cardId", async (request, response) => {
     }
 });
 
-//TODO: create card:
+//* create cards
 router.post("/", auth, async (request, response) => {
     if (DB == "mongodb") {
         try {
@@ -96,7 +95,7 @@ router.post("/", auth, async (request, response) => {
     }
 });
 
-//TODO: update card function using cardId the updated card data:
+//* update card
 router.put("/:cardId", auth, async (request, response) => {
     if (DB == "mongodb") {
         try {
@@ -130,7 +129,7 @@ router.put("/:cardId", auth, async (request, response) => {
     }
 });
 
-//TODO: change bizMunber value of card using cardId and the new bizNumber:
+//* change the biznumber
 router.patch("/:cardId", auth, async (request, response) => {
     if (DB == "mongodb") {
         try {
@@ -145,7 +144,7 @@ router.patch("/:cardId", auth, async (request, response) => {
     }
 });
 
-//TODO: like card using cardId and userId:
+//* like card
 router.patch("/:cardId", auth, async (request, response) => {
     if (DB == "mongodb") {
         try {
@@ -159,7 +158,7 @@ router.patch("/:cardId", auth, async (request, response) => {
     }
 });
 
-//TODO: delete card using cardId:
+//* get card
 router.delete("/:cardId", auth, async (request, response) => {
     if (DB == "mongodb") {
         try {

@@ -8,6 +8,7 @@ const {
 const Address = require("../../../helpers/mongodb/address");
 const Image = require("../../../helpers/mongodb/image");
 
+//* card schema
 const cardSchema = new mongoose.Schema({
     title: DEFAULT_VALIDATION,
     subtitle: DEFAULT_VALIDATION,

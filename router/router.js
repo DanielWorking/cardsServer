@@ -4,7 +4,7 @@ const usersRouterController = require("../users/routes/usersRestController.js");
 const { handleError } = require("../utils/handleErrors");
 const router = express.Router();
 
-//? use() - all the request that starts with "/cards" / "/users" turn to the apropreiate router control
+//* all the request that starts with "/cards" / "/users" turn to the apropreiate router control
 router.use("/cards", cardsRouterController);
 router.use("/users", usersRouterController);
 

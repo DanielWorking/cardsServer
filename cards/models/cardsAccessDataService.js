@@ -10,7 +10,7 @@ const getCards = async () => {
     }
 };
 
-//TODO: getCard(cardId) function:
+//* get card using card id
 const getCard = async (cardId) => {
     try {
         let card = await Card.findById(cardId);
@@ -20,8 +20,7 @@ const getCard = async (cardId) => {
     }
 };
 
-//TODO: getMyCards(userId) function:
-//? find({userId}) - find for filtering using the condition inside. inside of object to declare the userId is a value not a key of the card entity
+//* get my cards using user id
 const getMyCards = async (userId) => {
     try {
         let myCards = Card.find({ user_id: userId });
@@ -41,8 +40,7 @@ const createCard = async (newCard) => {
     }
 };
 
-//TODO: updateCard(cardId, updatedCard) function:
-//? new:true - so card will be after the update
+//* update card using card id and the new data of the card
 const updateCard = async (cardId, updatedCard) => {
     try {
         let card = await Card.findByIdAndUpdate(cardId, updatedCard, {
@@ -55,8 +53,7 @@ const updateCard = async (cardId, updatedCard) => {
     }
 };
 
-//TODO: changeBizNumber(userId, newBizNumber) function:
-//? card.bizNumber = newBizNumber - only one property to change, no need for Object.assign
+//* change bizNumber of card using card id and the new bizNumber
 const changeBizNumber = async (cardId, newBizNumber) => {
     try {
         let card = await Card.findById(cardId);
@@ -68,7 +65,7 @@ const changeBizNumber = async (cardId, newBizNumber) => {
     }
 };
 
-//TODO: likeCard(cardId, userId) function:
+//* like card using card id and the user id
 const likeCard = async (cardId, userId) => {
     try {
         let card = await Card.findById(cardId);
@@ -88,7 +85,7 @@ const likeCard = async (cardId, userId) => {
     }
 };
 
-//TODO: deleteCard(cardId) function:
+//* delete card using card id
 const deleteCard = async (cardId) => {
     try {
         let deletedCard = await Card.findByIdAndDelete(cardId);
