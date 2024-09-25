@@ -4,6 +4,9 @@ const connectToDb = require("./DB/dbService");
 const router = require("./router/router");
 const app = express();
 
+//* defining the cors as middleware for the server (by default - give access to all sites to refer to the server)
+app.use(corsMiddleware);
+
 //* to make the sever accept data in json format
 app.use(express.json());
 
