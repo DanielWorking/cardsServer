@@ -2,6 +2,7 @@ const express = require("express");
 const PORT = process.env.PORT || 8181;
 const connectToDb = require("./DB/dbService");
 const router = require("./router/router");
+const loggerMiddleware = require("./logger/loggerService.js");
 const { handleError } = require("./utils/handleErrors");
 const app = express();
 
@@ -10,6 +11,9 @@ app.use(corsMiddleware);
 
 //* to make the sever accept data in json format
 app.use(express.json());
+
+//* using the morgan logger function:
+app.use(loggerMiddleware());
 
 //* defining the public as static
 app.use(express.static("./public"));
