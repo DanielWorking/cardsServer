@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-// not uplaoding to cload so no use in atlas mongodb
 const connectionStringForAtlas = "";
 
 const connectToAtlaslDb = async () => {
