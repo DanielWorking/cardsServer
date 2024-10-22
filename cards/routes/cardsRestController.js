@@ -19,6 +19,7 @@ const router = express.Router();
 const config = require("config");
 const DB = config.get("DB");
 
+//* get all cards
 router.get("/", async (request, response) => {
     if (DB == "mongodb") {
         try {
@@ -29,8 +30,6 @@ router.get("/", async (request, response) => {
         }
     }
 });
-
-//* the order of the functions is important, the server reads from top to buttom and check what url and CRUD command the request is. to make sure the server wont think /my-cards is the id, we need to position the my-cards function before the /:cardId functions
 
 //* get my cards
 router.get("/my-cards", auth, async (request, response) => {
@@ -64,7 +63,7 @@ router.get("/:cardId", async (request, response) => {
     }
 });
 
-//* create cards
+//* create card
 router.post("/", auth, async (request, response) => {
     if (DB == "mongodb") {
         try {
@@ -133,10 +132,14 @@ router.put("/:cardId", auth, async (request, response) => {
 router.patch("/:cardId", auth, async (request, response) => {
     if (DB == "mongodb") {
         try {
-            let card = await changeBizNumber(
-                request.params.cardId,
-                request.body
-            );
+            const { cardId } = request.params;
+            const { bizNumber } = request.body;
+
+            if (!bizNumber) {
+                return handleError(response, 400, "newBizNumber is required");
+            }
+
+            let card = await changeBizNumber(cardId, bizNumber);
             response.send(card);
         } catch (error) {
             handleError(response, 404, "Card not found.");
@@ -158,7 +161,7 @@ router.patch("/:cardId", auth, async (request, response) => {
     }
 });
 
-//* get card
+//* delete card
 router.delete("/:cardId", auth, async (request, response) => {
     if (DB == "mongodb") {
         try {

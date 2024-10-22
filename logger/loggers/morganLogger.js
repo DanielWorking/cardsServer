@@ -3,7 +3,7 @@ const { currentTime } = require("../../utils/timeHelper");
 const chalk = require("chalk");
 
 //* the morgan logger function:
-const morganLogger = morgan(function (tokens, req, res) {
+const morganLogger = morgan(function (tokens, request, response) {
     const { year, month, day, hours, minuts, seconds } = currentTime();
     let message = [
         `[${year}/${month}/${day} ${hours}:${minuts}:${seconds}]`,

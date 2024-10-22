@@ -54,10 +54,13 @@ const updateCard = async (cardId, updatedCard) => {
 };
 
 //* change bizNumber of card using card id and the new bizNumber
-const changeBizNumber = async (cardId, newBizNumber) => {
+const changeBizNumber = async (cardId, bizNumber) => {
     try {
         let card = await Card.findById(cardId);
-        card.bizNumber = newBizNumber;
+        if (!card) {
+            throw new Error("Card not found");
+        }
+        card.bizNumber = bizNumber;
         await card.save();
         return card;
     } catch (error) {

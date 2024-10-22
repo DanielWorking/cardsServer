@@ -1,4 +1,4 @@
-const { createError } = require("../utils/handleErrors");
+const { createError, handleError } = require("../utils/handleErrors");
 const { verifyToken } = require("./providers/jwt");
 
 //* using the default json file in the config folder for the token generator configuration:

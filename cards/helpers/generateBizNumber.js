@@ -2,7 +2,7 @@ const _ = require("lodash");
 const Card = require("../models/mongodb/Card");
 const { createError } = require("../../utils/handleErrors");
 
-const generetaeBizNumber = async () => {
+const generateBizNumber = async () => {
     let cardsCount = await Card.find().countDocuments();
     if (cardsCount === 9_000_000) {
         createError("Business Number", "Maximum cards count reached");
@@ -23,4 +23,4 @@ const isBizNumberExists = async (bizNumber) => {
     }
 };
 
-module.exports = { generetaeBizNumber };
+module.exports = { generateBizNumber };

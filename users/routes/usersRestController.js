@@ -61,13 +61,23 @@ router.get("/", auth, async (request, response) => {
 router.delete("/:userId", auth, async (request, response) => {
     const { userId } = request.params;
     const userInfo = request.user;
-    if ((userInfo.isAdmin || userInfo.isBusiness) && userInfo._id == userId) {
+
+    if (userInfo.isAdmin || userInfo._id == userId) {
         try {
-            let deletedUser = await deleteUser(request.params.userId);
-            response.send(deletedUser);
+            let deletedUser = await deleteUser(userId);
+            if (!deletedUser) {
+                return handleError(response, 404, "User not found.");
+            }
+            return response.send(deletedUser);
         } catch (error) {
-            handleError(response, 500, "Failed to delete the user.");
+            return handleError(response, 500, "Failed to delete the user.");
         }
+    } else {
+        return handleError(
+            response,
+            403,
+            "Not authorized to delete this user."
+        );
     }
 });
 

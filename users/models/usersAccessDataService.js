@@ -53,7 +53,7 @@ const updateUser = async (userId, newUserData) => {
         let user = await User.findByIdAndUpdate(userId, newUserData, {
             new: true,
         });
-        user = await card.save();
+        user = await user.save();
         return user;
     } catch (error) {
         createError("Mongoose", error);
