@@ -29,15 +29,17 @@ This backend server is built in JavaScript with Node.js, Express, and MongoDB, a
    cd business-card-backend
 
 2. Install dependencies:
+   ```bash
     npm install
 
 3. Configure environment variables:
 - Create a .env file in the root directory.
-- Add your MongoDB URI and JWT secret:
-    MONGO_URI=your_mongodb_uri
+- Add your MongoDB URI and JWT secret:<br>
+    MONGO_URI=your_mongodb_uri<br>
     JWT_SECRET=your_jwt_secret
 
 4. Run the server:
+   ```bash
     npm start
 
 ## Scripts
@@ -48,66 +50,66 @@ This backend server is built in JavaScript with Node.js, Express, and MongoDB, a
 
 ## Project Structure
 
-CARDSSERVER/
-├── auth/                                # Authentication services and providers
-│   ├── providers/
+CARDSSERVER/<br>
+├── auth/ **# Authentication services and providers**<br>
+│   ├── providers/<br>
 │   │   └── jwt.js                       
 │   └── authService.js                   
-├── cards/                               # Card-related functionality
-│   ├── helpers/
+├── cards/ **# Card-related functionality**<br>
+│   ├── helpers/<br>
 │   │   ├── generateBizNumber.js         
 │   │   └── normalizeCard.js             
-│   ├── models/
-│   │   └── mongodb/
-│   │       └── card.js                  # Mongoose schema and model for cards
-│   ├── routes/
-│   │   └── cardsRestController.js       # Card-related route handlers
-│   └── validation/                      # Card validation
-│       ├── joi/
+│   ├── models/<br>
+│   │   └── mongodb/<br>
+│   │       └── card.js **# Mongoose schema and model for cards**<br>
+│   ├── routes/<br>
+│   │   └── cardsRestController.js **# Card-related route handlers**<br>
+│   └── validation/ **# Card validation**<br>
+│       ├── joi/<br>
 │       │   └── validateCardWithJoi.js   
 │       └── cardValidationService.js     
-├── config/                              # Configuration files for different environments
+├── config/ **# Configuration files for different environments**<br>
 │   ├── default.json                     
 │   ├── development.json                 
 │   └── production.json                  
-├── db/                                  # Database connections
-│   ├── mongodb/
+├── db/ **# Database connections**<br>
+│   ├── mongodb/<br>
 │   │   ├── connectToAtlas.js            
 │   │   └── connectToMongodbLocally.js   
 │   └── dbService.js                     
 ├── helpers/                             
-│   └── mongodb/                         # Mongoose schema and model for users
+│   └── mongodb/ **# Mongoose schema and model for users**<br>
 │       ├── Address.js                   
 │       ├── Image.js                     
 │       ├── mongooseValidators.js        
 │       └── Name.js                      
 ├── logger/                              
-│   ├── loggers/
-│   │   └── morganLogger.js              # Configured morgan logger for HTTP requests
-│   └── loggerService.js                 # Logger service for application-level logs
-├── middlewares/
-│   └── cors.js                          # CORS configuration middleware
-├── router/
-│   └── router.js                        # Main router that integrates all route modules
-├── users/                               # User-related functionality
-│   ├── helpers/
-│   │   └── bcrypt.js                    # Password hashing and comparison using bcrypt
-│   ├── models/
-│   │   └── mongodb/
-│   │       └── User.js                  # Mongoose schema and model for users
-│   ├── routes/
-│   │   └── usersRestController.js       # User-related route handlers
-│   └── validation/
-│       ├── Joi/
+│   ├── loggers/<br>
+│   │   └── morganLogger.js **# Configured morgan logger for HTTP requests**<br>
+│   └── loggerService.js **# Logger service for application-level logs**<br>
+├── middlewares/<br>
+│   └── cors.js **# CORS configuration middleware**<br>
+├── router/<br>
+│   └── router.js **# Main router that integrates all route modules**<br>
+├── users/ **# User-related functionality**<br>
+│   ├── helpers/<br>
+│   │   └── bcrypt.js **# Password hashing and comparison using bcrypt**<br>
+│   ├── models/<br>
+│   │   └── mongodb/<br>
+│   │       └── User.js **# Mongoose schema and model for users**<br>
+│   ├── routes/<br>
+│   │   └── usersRestController.js **# User-related route handlers**<br>
+│   └── validation/<br>
+│       ├── Joi/<br>
 │       │   ├── loginValidation.js       
 │       │   └── registerValidation.js    
 │       └── userValidationService.js     
-├── utils/                               # Utility functions used across the project
+├── utils/ **# Utility functions used across the project**<br>
 │   ├── handleErrors.js                  
 │   └── timeHelper.js                    
 ├── .env                                 
 ├── .gitignore                           
-├── app.js                               # Main application file
+├── app.js **# Main application file**<br>
 ├── package-lock.json                    
 └── package.json                         
 
