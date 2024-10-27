@@ -26,7 +26,7 @@ This backend server is built in JavaScript with Node.js, Express, and MongoDB, a
 1. Clone the repository:
    ```bash
    git clone https://github.com/your-username/business-card-backend.git
-   cd business-card-backend
+   cd cardsserver
 
 2. Install dependencies:
    ```bash
